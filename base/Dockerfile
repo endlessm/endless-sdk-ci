@@ -66,8 +66,6 @@ RUN apt-get remove -y \
         docbook-to-man \
         docbook-xml \
         docbook-xsl \
-        git-core \
-        git-man \
         hicolor-icon-theme \
         highlight \
         highlight-common \
