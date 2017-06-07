@@ -1,0 +1,411 @@
+<?xml version="1.0"?>
+<!DOCTYPE moduleset SYSTEM "moduleset.dtd">
+<?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
+
+<moduleset>
+
+  <repository type="git" name="endlessm"
+              href="https://github.com/endlessm"
+              default="yes"/>
+  <repository type="git" name="github"
+              href="https://github.com/"/>
+  <repository type="git" name="gnome"
+              href="https://git.gnome.org/browse/"/>
+  <repository type="tarball" name="people.mozilla.org"
+              href="https://people.mozilla.org/~sstangl/"/>
+  <repository type="git" name="gstreamer.freedesktop.org"
+              href="git://anongit.freedesktop.org/gstreamer/"/>
+  <repository type="tarball" name="gnome.org"
+              href="https://download.gnome.org/sources/"/>
+
+  <repository type="system" name="system"/>
+
+  <!-- SYSTEM DEPENDENCIES -->
+
+  <systemmodule id="meson">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="meson"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="gtk-doc">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="gtkdocize"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="atk">
+    <branch repo="system"/>
+    <pkg-config>atk.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="cairo">
+    <branch repo="system"/>
+    <pkg-config>cairo.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="pango">
+    <branch repo="system"/>
+    <pkg-config>pango.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="gdk-pixbuf">
+    <branch repo="system"/>
+    <pkg-config>gdk-pixbuf-2.0.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="at-spi2-atk">
+    <branch repo="system"/>
+    <pkg-config>atspi-2.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="libffi">
+    <branch repo="system"/>
+    <pkg-config>libffi.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="libpcre">
+    <branch repo="system"/>
+    <pkg-config>libpcre.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="zlib">
+    <branch repo="system"/>
+    <pkg-config>zlib.pc</pkg-config>
+  </systemmodule>
+
+  <autotools id="mozjs38" autogen-sh="configure"
+             supports-non-srcdir-builds="no"
+             autogenargs="--enable-posix-nspr-emulation --with-system-zlib --enable-system-ffi --with-system-icu --with-intl-api">
+    <pkg-config>mozjs-38.pc</pkg-config>
+    <branch repo="people.mozilla.org" module="mozjs-38.2.1.rc0.tar.bz2"
+            version="38.2.1"
+            checkoutdir="mozjs-38.0.0" source-subdir="js/src"
+            hash="sha256:01994c758174bc173bcf4960f05ecb4da21014f09641a63b2952bbf9eeaa8b5c">
+      <patch file="mozjs38-fix-tracelogger.patch" strip="1"/>
+      <patch file="mozjs38-release-number.patch" strip="1"/>
+      <patch file="mozjs38-shell-version.patch" strip="1"/>
+      <patch file="mozjs38-pkg-config-version.patch" strip="1"/>
+      <patch file="mozjs38-install-name.patch" strip="1"/>
+      <patch file="mozjs38-copy-headers.patch" strip="1"/>
+      <patch file="mozjs38-add-bracket.patch" strip="1"/>
+      <patch file="mozjs38-1269317.patch" strip="1"/>
+      <patch file="mozjs38-remove-nspr-dep.patch" strip="1"/>
+    </branch>
+    <dependencies>
+      <dep package="libffi"/>
+      <dep package="zlib"/>
+    </dependencies>
+  </autotools>
+
+  <systemmodule id="dbus-glib">
+    <branch repo="system"/>
+    <pkg-config>dbus-glib-1.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="libepoxy">
+    <branch repo="system"/>
+    <pkg-config>epoxy.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="polib">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="/usr/lib/python3/dist-packages/polib.py"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="pyyaml">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="/usr/lib/python3/dist-packages/yaml/__init__.py"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="gobject-introspection">
+    <pkg-config>gobject-introspection-1.0.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="webkit2gtk">
+    <pkg-config>webkit2gtk-4.0.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="tcl">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="tclsh"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="libevince">
+    <pkg-config>evince-view-3.0.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="sass">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="sassc"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="glib">
+    <pkg-config>glib-2.0.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="gtk+-3">
+    <pkg-config>gtk+-3.0.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="json-glib">
+    <pkg-config>json-glib-1.0.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="mathjax">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="/usr/share/javascript/mathjax/MathJax.js"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="libsoup">
+    <pkg-config>libsoup-2.4.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="iso-codes">
+    <pkg-config>iso-codes.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="flac">
+    <pkg-config>flac.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="opus">
+    <pkg-config>opus.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="libvpx">
+    <pkg-config>vpx.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="taglib">
+    <pkg-config>taglib.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="wavpack">
+    <branch repo="system" version="4.2"/>
+    <pkg-config>wavpack.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="libv4l">
+    <branch repo="system"/>
+    <pkg-config>libv4l2.pc</pkg-config>
+  </systemmodule>
+
+  <systemmodule id="libxml2">
+    <branch repo="system"/>
+    <pkg-config>libxml-2.0.pc</pkg-config>
+  </systemmodule>
+
+  <!-- OFFLINE CONTENT PLATFORM -->
+
+  <autotools id="eos-metrics" autogenargs="--disable-gir-doc">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="eos-sdk" autogenargs="--enable-strict-flags --disable-gir-doc">
+    <branch/>
+    <dependencies>
+      <dep package="gobject-introspection"/>
+      <dep package="json-glib"/>
+      <dep package="gjs"/>
+      <dep package="glib"/>
+      <dep package="gtk+-3"/>
+      <dep package="jasmine-gjs"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="eos-knowledge-lib" autogenargs="--enable-strict-flags">
+    <branch/>
+    <dependencies>
+      <dep package="eos-sdk"/>
+      <dep package="xapian-bridge"/>
+      <dep package="libevince"/>
+      <dep package="webkit2gtk"/>
+      <dep package="sass"/>
+      <dep package="mathjax"/>
+      <dep package="eos-shard"/>
+      <dep package="polib"/>
+      <dep package="pyyaml"/>
+      <dep package="gjs"/>
+      <dep package="glib"/>
+      <dep package="gtk+-3"/>
+      <dep package="emeus"/>
+      <dep package="jasmine-gjs"/>
+      <dep package="gst-plugins-good"/>
+      <dep package="gst-plugins-bad"/>
+    </dependencies>
+  </autotools>
+
+  <!-- TOOLS -->
+
+  <autotools id="jasmine-gjs">
+    <branch repo="github" module="ptomato/jasmine-gjs"/>
+    <dependencies>
+      <dep package="gjs"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="eos-shard" autogen-sh="autoreconf">
+    <branch/>
+  </autotools>
+
+  <autotools id="xapian-core" autogenargs="--enable-maintainer-mode --disable-documentation">
+    <branch/>
+    <dependencies>
+      <dep package="tcl"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="xapian-bridge">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="json-glib"/>
+      <dep package="libsoup"/>
+      <dep package="xapian-glib"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="xapian-glib">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="xapian-core"/>
+    </dependencies>
+  </autotools>
+
+  <meson id="emeus">
+    <branch repo="github" module="ebassi/emeus"/>
+    <dependencies>
+      <dep package="gtk+-3"/>
+    </dependencies>
+  </meson>
+
+  <!-- GNOME DEPENDENCIES -->
+
+  <autotools id="gjs" autogenargs="--enable-installed-tests">
+    <branch repo="gnome"/>
+    <dependencies>
+      <dep package="dbus-glib"/>
+      <dep package="gobject-introspection"/>
+      <dep package="mozjs38"/>
+      <dep package="gtk+-3"/>
+    </dependencies>
+  </autotools>
+
+  <tarball id="gstreamer">
+    <source href="https://download.gnome.org/sources/gstreamer/1.11/gstreamer-1.11.2.tar.xz"
+            hash="sha256:baa27e761e9d2e1770a8e311b2a61397edd6a288b2ff188940ea001615883305"
+            md5sum="0ca5f110cb0f1670f4b2afe567934be3" size="3136168"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="libxml2"/>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+  </tarball>
+
+  <tarball id="gst-plugins-base" autogenargs="--enable-experimental --enable-orc --enable-opus">
+    <source href="https://download.gnome.org/sources/gst-plugins-base/1.11/gst-plugins-base-1.11.2.tar.xz"
+            hash="sha256:7f73876e795dccf8acf1a45148b7cdd32bc618de6cadb049a00ea38111ceebd9"
+            md5sum="618db0551aa1a2dcc219703c9323134d" size="3061932"/>
+    <dependencies>
+      <dep package="gstreamer"/>
+      <dep package="gtk+-3"/>
+      <dep package="iso-codes"/>
+      <dep package="opus"/>
+    </dependencies>
+  </tarball>
+
+  <tarball id="gst-plugins-good"
+           autogenargs="--enable-experimental --enable-orc --disable-monoscope --disable-aalib --enable-cairo --disable-libcaca --disable-jack --with-default-visualizer=autoaudiosink">
+    <source href="https://download.gnome.org/sources/gst-plugins-good/1.11/gst-plugins-good-1.11.2.tar.xz"
+            hash="sha256:704dadaa6b024bb5cdbdae58d6dabcbc3134294b64555484927a137c5b66ae69"
+            md5sum="f6a1b271c2ae625f8926c40d7d6b58e7" size="3454360"/>
+    <dependencies>
+      <dep package="gstreamer"/>
+      <dep package="gst-plugins-base"/>
+      <dep package="flac"/>
+      <dep package="libvpx"/>
+      <dep package="taglib"/>
+      <dep package="wavpack"/>
+      <dep package="libv4l"/>
+    </dependencies>
+  </tarball>
+
+  <meson id="graphene">
+    <branch repo="github"
+            checkoutdir="graphene"
+            module="ebassi/graphene.git"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+  </meson>
+
+  <tarball id="gst-plugins-bad" autogenargs="--enable-experimental --enable-orc">
+    <source href="https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.11.2.tar.xz"
+            hash="sha256:c23fc89a5fdd8e1c77a3b12e8667df33990526c88b328ee7957dbbf9b29cc16a"
+            md5sum="ef5ea52481620048b79db93b9d66294d" size="4678904"/>
+    <dependencies>
+      <dep package="gstreamer"/>
+      <dep package="gst-plugins-base"/>
+    </dependencies>
+    <suggests>
+      <dep package="graphene"/>
+    </suggests>
+  </tarball>
+
+  <!-- METAMODULES -->
+
+  <metamodule id="meta-eos-sdk-core">
+    <dependencies>
+      <dep package="gjs"/>
+      <dep package="eos-metrics"/>
+      <dep package="eos-sdk"/>
+    </dependencies>
+  </metamodule>
+
+  <metamodule id="meta-eos-sdk-knowledge">
+    <dependencies>
+      <dep package="gjs"/>
+      <dep package="xapian-core"/>
+      <dep package="xapian-bridge"/>
+      <dep package="eos-knowledge-lib"/>
+    </dependencies>
+  </metamodule>
+
+  <metamodule id="meta-eos-sdk">
+    <dependencies>
+      <dep package="meta-eos-sdk-core"/>
+      <dep package="meta-eos-sdk-knowledge"/>
+    </dependencies>
+  </metamodule>
+
+</moduleset>
