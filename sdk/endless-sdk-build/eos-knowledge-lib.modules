@@ -220,12 +220,18 @@
     <pkg-config>libxml-2.0.pc</pkg-config>
   </systemmodule>
 
+  <systemmodule id="uuid">
+    <branch repo="system"/>
+    <pkg-config>uuid.pc</pkg-config>
+  </systemmodule>
+
   <!-- OFFLINE CONTENT PLATFORM -->
 
   <autotools id="eos-metrics" autogenargs="--disable-gir-doc">
     <branch/>
     <dependencies>
       <dep package="glib"/>
+      <dep package="uuid"/>
     </dependencies>
   </autotools>
 
@@ -238,6 +244,7 @@
       <dep package="glib"/>
       <dep package="gtk+-3"/>
       <dep package="jasmine-gjs"/>
+      <dep package="eos-metrics"/>
     </dependencies>
   </autotools>
 

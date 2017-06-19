@@ -52,12 +52,16 @@ RUN echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/source
         ninja-build \
         pkg-config \
         python \
+        python-dbusmock \
+        python-dbus \
         python-dev \
         python-pip \
         python-setuptools \
         python-virtualenv \
         python-wheel \
         python3 \
+        python3-dbusmock \
+        python3-dbus \
         python3-pip \
         python3-polib \
         python3-setuptools \
@@ -65,7 +69,7 @@ RUN echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/source
         python3-wheel \
         python3-yaml \
         tcl \
-        uuid \
+        uuid-dev \
         wget \
         xvfb \
         yelp-tools \
@@ -75,15 +79,8 @@ RUN echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/source
     && pip3 install meson \
     && rm -rf /usr/share/doc/* /usr/share/man/*
 
-
 RUN locale-gen C.UTF-8 && /usr/sbin/update-locale LANG=C.UTF-8
 ENV LANG=C.UTF-8 LANGUAGE=C.UTF-8 LC_ALL=C.UTF-8
 
 ENV FLATPAK_OSTREE_REPO_MODE=user-only
 RUN flatpak remote-add --if-not-exists gnome https://sdk.gnome.org/gnome.flatpakrepo
-
-COPY endless-sdk-build /tmp
-RUN /tmp/endless-install-jhbuild.sh
-
-RUN useradd -ms /bin/bash jhbuildci
-RUN su - jhbuildci -c /tmp/endless-setup-jhbuild.sh
