@@ -302,7 +302,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="xapian-glib">
+  <autotools id="xapian-glib" autogenargs="--with-xapian-config=xapian-config-1.3">
     <branch/>
     <dependencies>
       <dep package="glib"/>
