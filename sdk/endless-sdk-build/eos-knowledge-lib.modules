@@ -283,7 +283,9 @@
     <branch/>
   </autotools>
 
-  <autotools id="xapian-core" autogenargs="--enable-maintainer-mode --disable-documentation">
+  <autotools id="xapian-core"
+             supports-non-srcdir-builds="no"
+             autogenargs="--enable-maintainer-mode --disable-documentation">
     <branch/>
     <dependencies>
       <dep package="tcl"/>
