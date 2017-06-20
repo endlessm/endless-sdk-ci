@@ -42,10 +42,13 @@ RUN echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/source
         libjs-mathjax \
         libopus-dev \
         libpango1.0-dev \
+        libsass0 \
         libtag1-dev \
         libtool \
         libtool-bin \
+        libv4l-dev \
         libvpx-dev \
+        libwavpack-dev \
         libwebkit2gtk-4.0-dev \
         locales \
         make \
@@ -68,6 +71,7 @@ RUN echo "deb http://deb.debian.org/debian experimental main" >> /etc/apt/source
         python3-virtualenv \
         python3-wheel \
         python3-yaml \
+        sassc \
         tcl \
         uuid-dev \
         wget \
