@@ -1,6 +1,3 @@
 FROM ebassi/endlessci:sdk
-ADD . /home/jhbuildci/source/@MODULE@
-RUN chown -hR jhbuildci /home/jhbuildci/source/@MODULE@/* /home/jhbuildci/source/@MODULE@/.*
-
-USER jhbuildci
-RUN endless-build-module @MODULE@
+ADD . /root/source/@MODULE@
+RUN endless-build-module --check --with-xvfb @MODULE@
