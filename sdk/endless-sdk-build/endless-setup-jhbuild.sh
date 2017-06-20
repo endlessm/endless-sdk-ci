@@ -1,17 +1,15 @@
 #!/bin/sh
 
-mkdir -p /home/jhbuildci/.config
-
-cat <<HERE > /home/jhbuildci/.config/jhbuildrc
+cat <<HERE > /etc/jhbuildrc
 use_local_modulesets = True
 
 modulesets_dir = '/usr/share/jhbuild/modulesets'
 moduleset = 'eos-knowledge-lib'
 
-checkoutroot = '/home/jhbuildci/source'
-buildroot = '/home/jhbuildci/build'
-tarballdir = '/home/jhbuildci/download'
-prefix = '/home/jhbuildci/install'
+checkoutroot = '/root/source'
+buildroot = '/root/build'
+tarballdir = '/root/download'
+prefix = '/opt/install'
 
 autogenargs = '--disable-gtk-doc'
 

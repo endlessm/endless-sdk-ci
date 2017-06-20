@@ -34,4 +34,4 @@ if [ -n "$START_XVFB" ]; then
         export DISPLAY=:99
 fi
 
-jhbuild $JHBUILD_OPTS build $JHBUILD_ARGS $MODULES
+jhbuild -f /etc/jhbuildrc $JHBUILD_OPTS build $JHBUILD_ARGS $MODULES

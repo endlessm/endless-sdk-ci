@@ -3,6 +3,7 @@
 git clone https://git.gnome.org/browse/jhbuild /tmp/jhbuild
 
 cd /tmp/jhbuild
+patch -p1 < /tmp/patches/jhbuild-no-root.patch
 ./autogen.sh --prefix /usr
 make install
 cd ..
