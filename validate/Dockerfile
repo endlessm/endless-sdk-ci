@@ -3,6 +3,8 @@ MAINTAINER Emmanuele Bassi <ebassi@gmail.com>
 
 RUN apt-get update -qq \
     && apt-get install -qq -y --no-install-recommends \
+        ca-certificates \
+        flatpak \
         gir1.2-flatpak-1.0 \
         gir1.2-freedesktop \
         gobject-introspection \
